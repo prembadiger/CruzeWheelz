@@ -28,7 +28,6 @@ CruzeWheelz is a web-based car rental management system that allows users to bro
   - HTML5
   - CSS3
   - JavaScript
-  - Bootstrap (for responsive design)
 
 - Backend:
   - PHP
