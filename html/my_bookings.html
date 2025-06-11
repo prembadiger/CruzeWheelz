@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings - CruzeWheelz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #ffcd00;
+            --dark-bg: #0e0e0e;
+            --card-bg: #1c1c1c;
+            --text-primary: #ffffff;
+            --text-secondary: #aaaaaa;
+            --danger-color: #ff4444;
+            --success-color: #00c851;
+            --warning-color: #ffa900;
+            --nav-hover-bg: #2f2f2f;
+            --nav-active-bg: #363636;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: var(--card-bg);
+            padding: 20px;
+            position: fixed;
+            height: 100vh;
+            left: 0;
+            top: 0;
+        }
+
+        .logo {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #8d8d8d;
+        }
+
+        #logoutBtn {
+            margin-top: 590px;
+            border-top: 2px solid #464646;
+            color: var(--text-primary);
+            border-radius: 0;
+        }
+        
+        #logoutBtn:hover {
+            background-color: var(--nav-hover-bg);
+            color: var(--text-primary);
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-bottom: 10px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .nav-link:hover {
+            background-color: var(--nav-hover-bg);
+            color: var(--text-primary);
+        }
+
+        .nav-link.active {
+            background-color: var(--nav-active-bg);
+            color: var(--text-primary);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 250px;
+            padding: 30px;
+            width: calc(100% - 250px);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .page-title h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .page-title p {
+            color: var(--text-secondary);
+        }
+
+        .close-button {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 10px;
+            transition: color 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-button:hover {
+            color: var(--nav-active-bg);
+        }
+
+        /* Booking Cards */
+        .bookings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .booking-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .booking-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--nav-active-bg);
+        }
+
+        .car-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 2px solid var(--nav-active-bg);
+        }
+
+        .booking-details {
+            padding: 20px;
+        }
+
+        .car-model {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .booking-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .status-pending {background-color: rgba(255, 205, 0, 0.2);color: var(--primary-color);}
+        .status-confirmed {background-color: rgba(0, 247, 99, 0.2);color: rgb(0, 255, 0);}
+        .status-ongoing {background-color: rgba(0, 200, 81, 0.2);color: var(--success-color);}
+        .status-completed {background-color: rgba(170, 170, 170, 0.2);color: var(--text-secondary);}
+        .status-cancelled { background-color: rgba(224, 41, 41, 0.712);color: #ffffff; }
+
+        .booking-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .action-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+
+        .view-btn {
+            background-color: var(--nav-active-bg);
+            color: var(--text-primary);
+        }
+
+        .view-btn:hover {
+            background-color: var(--nav-hover-bg);
+        }
+
+        .cancel-btn {
+            background-color: transparent;
+            color: var(--danger-color);
+            border: 1px solid var(--danger-color);
+        }
+
+        .cancel-btn:hover {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: none;
+            background:#2f2f2f;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: var(--dark-bg);
+        }
+
+        .filter-btn:hover {
+            background: var(--primary-color);
+            color: var(--dark-bg);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 50px 20px;
+            background: var(--card-bg);
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .empty-state h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .empty-state p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .browse-cars-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: var(--primary-color);
+            color: var(--dark-bg);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .browse-cars-btn:hover {
+            background: #ffd633;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 80px;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .nav-link span {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 80px;
+                width: calc(100% - 80px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .bookings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filters {
+                flex-wrap: wrap;
+            }
+
+            .filter-btn {
+                flex: 1;
+                min-width: 120px;
+            }
+        }
+
+        .highlight-new {
+            animation: highlightNew 2s ease-in-out;
+            border: 2px solid var(--primary-color);
+        }
+
+        @keyframes highlightNew {
+            0% {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 30px rgba(255, 205, 0, 0.3);
+            }
+            100% {
+                transform: translateY(0);
+                box-shadow: none;
+            }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: relative;
+            background: var(--card-bg);
+            width: 90%;
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--nav-hover-bg);
+        }
+
+        .modal-title {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+        }
+
+        .profile-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .profile-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .profile-item:hover {
+            transform: translateY(-5px);
+            background: var(--nav-hover-bg);
+            border-color: var(--nav-active-bg);
+        }
+
+        .profile-item h4 {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .profile-item p {
+            color: var(--text-primary);
+            font-size: 1.4rem;
+            font-weight: 500;
+        }
+
+        /* Modal Responsive Styles */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                padding: 25px;
+                margin: 20px auto;
+            }
+
+            .profile-info {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .profile-item {
+                padding: 20px;
+            }
+
+            .modal-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Settings Modal Specific Styles */
+        #settingsModal .modal-content {
+            max-width: 500px;
+            background: linear-gradient(145deg, var(--card-bg), #1a1a1a);
+            border: 1px solid rgba(255, 205, 0, 0.1);
+        }
+
+        #settingsModal .modal-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 205, 0, 0.2);
+        }
+
+        #settingsModal .modal-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        #settingsModal .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        #settingsModal .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        #settingsModal .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        #settingsModal .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(255, 205, 0, 0.1);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        #settingsModal .form-group small {
+            display: block;
+            margin-top: 5px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        #settingsModal .form-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #settingsModal .action-btn {
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        #settingsModal .action-btn[type="submit"] {
+            background: var(--primary-color);
+            color: var(--dark-bg);
+            border: none;
+        }
+
+        #settingsModal .action-btn[type="submit"]:hover {
+            background: #e6b800;
+            transform: translateY(-2px);
+        }
+
+        #settingsModal .action-btn[type="button"] {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        #settingsModal .action-btn[type="button"]:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Password field specific styles */
+        #settingsModal .form-group input[type="password"] {
+            letter-spacing: 2px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            #settingsModal .modal-content {
+                width: 95%;
+                padding: 25px;
+                margin: 20px auto;
+            }
+
+            #settingsModal .form-actions {
+                flex-direction: column;
+            }
+
+            #settingsModal .action-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h1 class="logo">CruzeWheelz</h1>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="user_dashboard.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link active">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>My Bookings</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../index.html#feature" class="nav-link">
+                    <i class="fas fa-car"></i>
+                    <span>Browse Cars</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" onclick="showProfileModal(event)">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" onclick="showSettingsModal(event)">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../php/logout.php" class="nav-link" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="header">
+            <div class="page-title">
+                <h1>My Bookings</h1>
+                <p>Manage and track all your car rentals</p>
+            </div>
+            <a href="../index.html" class="close-button" title="Go to Dashboard">
+                <i class="fas fa-times"></i>
+            </a>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All Bookings</button>
+            <button class="filter-btn" data-filter="pending">Pending</button>
+            <button class="filter-btn" data-filter="confirmed">confirmed</button>
+            <button class="filter-btn" data-filter="ongoing">Ongoing</button>
+            <button class="filter-btn" data-filter="completed">Completed</button>
+            <button class="filter-btn" data-filter="cancelled">Cancelled</button>
+        </div>
+
+        <!-- Bookings Grid -->
+        <div class="bookings-grid" id="bookingsGrid">
+            <!-- Bookings will be loaded here -->
+        </div>
+
+        <!-- Empty State (shown when no bookings) -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <i class="fas fa-calendar-times"></i>
+            <h2>No Bookings Found</h2>
+            <p>You haven't made any car bookings yet. Start exploring our collection of cars!</p>
+            <a href="../index.html#feature" class="browse-cars-btn">Browse Cars</a>
+        </div>
+    </main>
+
+    <!-- Profile Modal -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Profile Information</h2>
+                <button class="modal-close" onclick="closeProfileModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="profile-info">
+                <div class="profile-item">
+                    <h4>Name</h4>
+                    <p id="profileName">Loading...</p>
+                </div>
+                <div class="profile-item">
+                    <h4>Email</h4>
+                    <p id="profileEmail">Loading...</p>
+                </div>
+                <div class="profile-item">
+                    <h4>Phone</h4>
+                    <p id="profilePhone">Loading...</p>
+                </div>
+                <div class="profile-item">
+                    <h4>Member Since</h4>
+                    <p id="memberSince">Loading...</p>
+                </div>
+                <div class="profile-item">
+                    <h4>Total Bookings</h4>
+                    <p id="totalBookingsCount">Loading...</p>
+                </div>
+                <div class="profile-item">
+                    <h4>Completed Bookings</h4>
+                    <p id="completedBookingsCount">Loading...</p>
+                </div>
+                <div class="profile-item">
+                    <h4>Confirmed Bookings</h4>
+                    <p id="confirmedBookingsCount">Loading...</p>
+                </div>
+                <div class="profile-item">
+                    <h4>Ongoing Bookings</h4>
+                    <p id="ongoingBookingsCount">Loading...</p>
+                </div>
+                <div class="profile-item">
+                    <h4>Pending Bookings</h4>
+                    <p id="pendingBookingsCount">Loading...</p>
+                </div>
+                <div class="profile-item">
+                    <h4>Cancelled Bookings</h4>
+                    <p id="cancelledBookingsCount">Loading...</p>
+                </div> 
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Account Settings</h2>
+                <button class="modal-close" onclick="closeSettingsModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="settingsForm" style="padding: 20px;">
+                <div class="form-group">
+                    <label>Name:</label>
+                    <input type="text" id="settingsName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number:</label>
+                    <input type="tel" id="settingsPhone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label>Current Password:</label>
+                    <input type="password" id="currentPassword" name="current_password" required>
+                </div>
+                <div class="form-group">
+                    <label>New Password:</label>
+                    <input type="password" id="newPassword" name="new_password">
+                    <small style="color: var(--text-secondary);">Leave blank if you don't want to change password</small>
+                </div>
+                <div class="form-group">
+                    <label>Confirm New Password:</label>
+                    <input type="password" id="confirmPassword" name="confirm_password">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="action-btn" style="background: var(--primary-color); color: var(--dark-bg);">Save Changes</button>
+                    <button type="button" class="action-btn" onclick="closeSettingsModal()" style="background: var(--card-bg); color: var(--text-primary);">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                // Check login status first
+                console.log('Checking login status...');
+                const loginResponse = await fetch('../php/check_login.php');
+                const loginData = await loginResponse.json();
+                console.log('Login status:', loginData);
+                
+                if (!loginData.success || !loginData.logged_in) {
+                    console.log('Not logged in, redirecting...');
+                    window.location.href = '../login.html';
+                    return;
+                }
+
+                console.log('User is logged in, loading bookings...');
+                // Load bookings
+                await loadBookings();
+
+                // Setup filter buttons
+                setupFilters();
+            } catch (error) {
+                console.error('Error in initialization:', error);
+            }
+        });
+
+        async function loadBookings() {
+            try {
+                console.log('Fetching bookings...');
+                const response = await fetch('../php/get_user_bookings.php');
+                const data = await response.json();
+                console.log('Response:', data);
+                
+                if (data.success) {
+                    const bookingsGrid = document.getElementById('bookingsGrid');
+                    const emptyState = document.getElementById('emptyState');
+
+                    if (data.bookings && data.bookings.length > 0) {
+                        console.log('Found bookings:', data.bookings.length);
+                        // Get the last booking ID from session storage
+                        const lastBookingId = sessionStorage.getItem('lastBookingId');
+                        console.log('Last booking ID:', lastBookingId);
+                        
+                        bookingsGrid.innerHTML = data.bookings.map(booking => {
+                            console.log('Processing booking:', booking);
+                            return `
+                            <div class="booking-card ${booking.id == lastBookingId ? 'highlight-new' : ''}" data-status="${booking.status}">
+                                <img src="../img/cars/${booking.car_image || '../images/default-car.jpg'}" alt="${booking.car_model}" class="car-image">
+                                <div class="booking-details">
+                                    <span class="status-badge status-${booking.status.toLowerCase()}">
+                                        ${booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
+                                    </span>
+                                    <h3 class="car-model">${booking.car_model || booking.car_name}</h3>
+                                    <div class="booking-info">
+                                        <div class="info-item">
+                                            <span class="info-label">Pickup Date</span>
+                                            <span class="info-value">${new Date(booking.pickup_date).toLocaleDateString()}</span>
+                                        </div>
+                                        <div class="info-item">
+                                            <span class="info-label">Return Date</span>
+                                            <span class="info-value">${new Date(booking.return_date).toLocaleDateString()}</span>
+                                        </div>
+                                        <div class="info-item">
+                                            <span class="info-label">Location</span>
+                                            <span class="info-value">${booking.location || 'Not specified'}</span>
+                                        </div>
+                                        <div class="info-item">
+                                            <span class="info-label">Total Amount</span>
+                                            <span class="info-value">₹${booking.total_amount}</span>
+                                        </div>
+                                    </div>
+                                    <div class="booking-actions">
+                                        <button class="action-btn view-btn" onclick="viewBooking(${booking.id})">
+                                            View Details
+                                        </button>
+                                        ${booking.status === 'pending' ? `
+                                            <button class="action-btn cancel-btn" onclick="cancelBooking(${booking.id})">
+                                                Cancel
+                                            </button>
+                                        ` : ''}
+                                    </div>
+                                </div>
+                            </div>
+                        `}).join('');
+                        
+                        bookingsGrid.style.display = 'grid';
+                        emptyState.style.display = 'none';
+
+                        // If there was a last booking ID, scroll to it and clear the session storage
+                        if (lastBookingId) {
+                            const newBookingCard = document.querySelector('.highlight-new');
+                            if (newBookingCard) {
+                                newBookingCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                setTimeout(() => {
+                                    sessionStorage.removeItem('lastBookingId');
+                                }, 2000);
+                            }
+                        }
+                    } else {
+                        console.log('No bookings found');
+                        bookingsGrid.style.display = 'none';
+                        emptyState.style.display = 'block';
+                    }
+                } else {
+                    console.error('Error in response:', data.message);
+                    throw new Error(data.message || 'Failed to load bookings');
+                }
+            } catch (error) {
+                console.error('Error loading bookings:', error);
+                const bookingsGrid = document.getElementById('bookingsGrid');
+                const emptyState = document.getElementById('emptyState');
+                bookingsGrid.style.display = 'none';
+                emptyState.style.display = 'block';
+                
+                // Check if it's an authentication error
+                if (error.message === 'Authentication required') {
+                    window.location.href = '../login.html';
+                }
+            }
+        }
+
+        function setupFilters() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const bookingCards = document.querySelectorAll('.booking-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    // Filter bookings
+                    const filter = button.dataset.filter;
+                    bookingCards.forEach(card => {
+                        if (filter === 'all' || card.dataset.status === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        }
+
+        function viewBooking(id) {
+            window.location.href = `booking_success.html?id=${id}`;
+        }
+
+        async function cancelBooking(id) {
+            if (!confirm('Are you sure you want to cancel this booking?')) {
+                return;
+            }
+
+            try {
+                const response = await fetch('../php/cancel_booking.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ booking_id: id })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert('Booking cancelled successfully');
+                    loadBookings(); // Reload the bookings
+                } else {
+                    alert(data.message || 'Failed to cancel booking');
+                }
+            } catch (error) {
+                console.error('Error cancelling booking:', error);
+                alert('An error occurred while cancelling the booking');
+            }
+        }
+
+        function showProfileModal(event) {
+            event.preventDefault();
+            const modal = document.getElementById('profileModal');
+            
+            // Fetch user data
+            fetch('../php/get_user_data.php')
+                .then(response => response.json())
+                .then(userData => {
+                    if (userData.success) {
+                        // Update profile information
+                        document.getElementById('profileName').textContent = userData.user.name || 'Not available';
+                        document.getElementById('profileEmail').textContent = userData.user.email || 'Not available';
+                        document.getElementById('profilePhone').textContent = userData.user.phone || 'Not available';
+                        document.getElementById('memberSince').textContent = new Date(userData.user.created_at || Date.now()).toLocaleDateString();
+                        
+                        // Fetch bookings data for counts
+                        fetch('../php/get_user_bookings.php')
+                            .then(response => response.json())
+                            .then(bookingsData => {
+                                if (bookingsData.success) {
+                                    document.getElementById('totalBookingsCount').textContent = bookingsData.bookings.length;
+                                    document.getElementById('confirmedBookingsCount').textContent = 
+                                        bookingsData.bookings.filter(booking => booking.status === 'confirmed').length;
+                                    document.getElementById('ongoingBookingsCount').textContent = 
+                                            bookingsData.bookings.filter(booking => booking.status === 'ongoing').length;
+                                        document.getElementById('completedBookingsCount').textContent = 
+                                            bookingsData.bookings.filter(booking => booking.status === 'completed').length;
+                                    document.getElementById('cancelledBookingsCount').textContent = 
+                                        bookingsData.bookings.filter(booking => booking.status === 'cancelled').length;
+                                    document.getElementById('pendingBookingsCount').textContent = 
+                                        bookingsData.bookings.filter(booking => booking.status === 'pending').length;
+                                }
+                            });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching user data:', error);
+                });
+
+            modal.style.display = 'block';
+        }
+
+        function closeProfileModal() {
+            document.getElementById('profileModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('profileModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        function showSettingsModal(event) {
+            event.preventDefault();
+            const modal = document.getElementById('settingsModal');
+            
+            // Fetch user data and populate form
+            fetch('../php/get_user_data.php')
+                .then(response => response.json())
+                .then(userData => {
+                    if (userData.success) {
+                        document.getElementById('settingsName').value = userData.user.name || '';
+                        document.getElementById('settingsPhone').value = userData.user.phone || '';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching user data:', error);
+                });
+
+            modal.style.display = 'block';
+        }
+
+        function closeSettingsModal() {
+            document.getElementById('settingsModal').style.display = 'none';
+            document.getElementById('settingsForm').reset();
+        }
+
+        // Handle settings form submission
+        document.getElementById('settingsForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (newPassword && newPassword !== confirmPassword) {
+                alert('New passwords do not match');
+                return;
+            }
+
+            const formData = {
+                name: document.getElementById('settingsName').value,
+                phone: document.getElementById('settingsPhone').value,
+                current_password: document.getElementById('currentPassword').value,
+                new_password: newPassword
+            };
+
+            try {
+                const response = await fetch('../php/update_user_settings.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert('Settings updated successfully');
+                    closeSettingsModal();
+                } else {
+                    alert(data.message || 'Error updating settings');
+                }
+            } catch (error) {
+                console.error('Error updating settings:', error);
+                alert('Error updating settings');
+            }
+        });
+    </script>
+</body>
+</html>

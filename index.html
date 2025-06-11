@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>cruzewheelz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"/>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="img/logo/car logo.png" alt="Logo" />
+      <span class="logo-text">CruzeWheelz <p>Drive Your Dream</p></span>
+    </div>
+  
+    <ul class="navbar">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#ride">Ride</a></li>
+      <li><a href="#feature">Cars</a></li>
+      <li><a href="html/about.html">About</a></li> 
+      <li><a href="#reviews">Reviews</a></li>
+    </ul>
+  
+    <div class="header-button">
+      <a href="html/signup.html" class="sign-up button" id="signup-btn">Sign Up</a>
+      <a href="html/login.html" class="sign-in button" id="signin-btn">Sign In</a>
+      <div class="profile-wrapper hidden" id="profile-dropdown">
+        <div class="profile-trigger" id="user-name">
+        </div>
+        <div class="profile-menu" id="profile-menu">
+          <a href="html/user_dashboard.html">Dashboard</a>
+          <button id="logout-btn">Logout</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Home Section -->
+  <section class="home animate" id="home">
+  <div class="text animate-text">
+    <h1><span>Looking</span> for <br />Rent a car</h1>
+    <p>Premium vehicles for your business trips, vacations, or special occasions. Book in minutes and elevate your journey.</p>
+  </div>
+
+  <div class="home-image animate-img">
+    <img src="img/cars/b2.png" alt="Car Image" />
+  </div>
+
+  <div class="form-container">
+    <form id="search-form">
+      <div class="input-box">
+        <label for="location-list">Location</label>
+        <select id="location-list" name="location" required>
+          <option value="">Select a location</option>
+        </select>
+      </div>
+
+      <div class="input-box">
+        <label for="pickup-date">Pick-Up Date</label>
+        <input type="text" id="pickup-date" name="pickup_date" placeholder="Select a date" required />
+      </div>
+
+      <div class="input-box">
+        <label for="return-date">Return Date</label>
+        <input type="text" id="return-date" name="return_date" placeholder="Select a date" required />
+      </div>
+
+      <input type="submit" class="button" value="Check Availability" />
+    </form>
+  </div>
+</section>
+
+  
+  
+
+  <!-- How it works -->
+<section class="ride scroll-animate delay-0" id="ride">
+  <h2 class="scroll-animate delay-0">HOW IT WORKS</h2>
+  <h1 class="scroll-animate delay-1">Rent With 3 Easy Steps</h1>
+  <div class="ride-container">
+    <div class="box scroll-animate delay-2">
+      <i class="ri ri-map-pin-2-line"></i>
+      <h3>Choose A Location</h3>
+      <p>Select from a variety of pick-up locations close to home, work, or airport.</p>
+    </div>
+    <div class="box scroll-animate delay-3">
+      <i class="ri ri-calendar-check-fill"></i>
+      <h3>Pick-Up Date</h3>
+      <p>Choose the exact date and time for your car pick-up.</p>
+    </div>
+    <div class="box scroll-animate delay-4">
+      <i class="ri ri-car-fill"></i>
+      <h3>Book A Car</h3>
+      <p>Complete your booking and we'll prepare your vehicle for a hassle-free pick-up.</p>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+  <!--Cars-->
+  <section class="featured-section" id="feature">
+    <h2>Featured Vehicles</h2>
+    <p>Explore our premium collection of vehicles</p>
+
+    <div class="filters">
+      <button class="filter-btn active" data-category="All">All</button>
+      <button class="filter-btn" data-category="Luxury">Luxury</button>
+      <button class="filter-btn" data-category="SUV">SUV</button>
+      <button class="filter-btn" data-category="Sports">Sports</button>
+      <button class="filter-btn" data-category="Sedan">Sedan</button>
+      <button class="filter-btn" data-category="Coupe">Coupe</button>
+      <button class="filter-btn" data-category="Supercar">Supercar</button>
+
+  
+  <!-- Sorting Dropdown -->
+  <div class="sortdropdown">
+    <div class="selected">Sort</div>
+    <ul class="dropdown-options">
+      <li data-value="price_asc">Price: Low to High</li>
+      <li data-value="price_desc">Price: High to Low</li>
+      <li data-value="rating_desc">Rating: High to Low</li>
+      <li data-value="featured">Featured</li>
+    </ul>
+   </div>
+  </div>
+
+    <div id="carContainer" class="car-listing-container"></div>
+  </section>
+
+
+
+
+
+
+<section class="why-choose">
+    <h2>Why Choose CruzeWheelz</h2>
+    <p>We deliver excellence at every turn, providing premium vehicles and exceptional service.</p>
+    
+    <div class="features">
+      <div class="feature-box">
+        <div class="icon"><i class="ri-shield-star-line"></i></div>
+        
+        <h3>100% Secure Booking</h3>
+        <p>Your payment and personal information are completely secure with our advanced encryption.</p>
+      </div>
+      <div class="feature-box">
+        <div class="icon"><i class="ri-time-line"></i></div>
+        <h3>Customer Support</h3>
+        <p>Our dedicated support team is available around the clock to assist you whenever you need help.</p>
+      </div>
+      <div class="feature-box">
+        <div class="icon"><i class="ri-award-fill"></i></div>
+        <h3>Premium Fleet Selection</h3>
+        <p>We maintain a meticulously serviced fleet of luxury and performance vehicles for your selection.</p>
+      </div>
+      <div class="feature-box">
+        <div class="icon"><i class="ri-flashlight-fill"></i></div>
+        <h3>Quick & Easy Process</h3>
+        <p>From booking to pickup, our streamlined process ensures you get on the road with minimal hassle.</p>
+      </div>
+    </div>
+
+    <div class="cta-box">
+    <!-- Newsletter Section -->
+  <div class="newsletter">
+    <h2>Subscribe to CruzeWheelz</h2>
+    <p>Get the latest updates on new car arrivals, special offers, and promotions straight to your inbox.</p>
+    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+      <input type="email" name="email" placeholder="Enter your email" required />
+      <button class="Newsletterbtn">Subscribe</button>
+    </form>
+  </div>
+    </div>
+  </section>
+
+  <!-- Reviews Section -->
+  <section class="reviews-section" id="reviews">
+    <h2>Customer Reviews</h2>
+    <p>What our customers say about us</p>
+
+    <div class="reviews-slider">
+      <div class="reviews-track">
+        <div class="review-card">
+          <div class="stars">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+          </div>
+          <p class="review-text">"Amazing service! The car was in perfect condition and the booking process was super smooth. Will definitely rent again!"</p>
+          <div class="reviewer-info">
+            <h4>Rahul Sharma</h4>
+            <p>Premium Member</p>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="stars">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+          </div>
+          <p class="review-text">"Best car rental service I've used. The staff was professional and the vehicle exceeded my expectations."</p>
+          <div class="reviewer-info">
+            <h4>Priya Patel</h4>
+            <p>Business Traveler</p>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="stars">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+          </div>
+          <p class="review-text">"Incredible experience! The car was spotless and the pickup/dropoff process was hassle-free. Highly recommended!"</p>
+          <div class="reviewer-info">
+            <h4>Vikram Singh</h4>
+            <p>Regular Customer</p>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="stars">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+          </div>
+          <p class="review-text">"The luxury cars are well-maintained and the service is top-notch. Perfect for special occasions!"</p>
+          <div class="reviewer-info">
+            <h4>Ananya Reddy</h4>
+            <p>Luxury Car Enthusiast</p>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="stars">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+          </div>
+          <p class="review-text">"Excellent customer service and a great selection of vehicles. The online booking system is very user-friendly."</p>
+          <div class="reviewer-info">
+            <h4>Arjun Mehta</h4>
+            <p>Tech Professional</p>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="stars">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+          </div>
+          <p class="review-text">"The luxury cars are impeccably maintained and the service is exceptional. Perfect for business trips and special occasions!"</p>
+          <div class="reviewer-info">
+            <h4>Neha Kapoor</h4>
+            <p>Corporate Executive</p>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="stars">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+          </div>
+          <p class="review-text">"I've been a regular customer for years and they never disappoint. The team always goes above and beyond to ensure a great experience."</p>
+          <div class="reviewer-info">
+            <h4>Rajesh Kumar</h4>
+            <p>Loyal Customer</p>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="stars">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+          </div>
+          <p class="review-text">"The sports cars are a dream to drive! Perfect for weekend getaways. The booking process was smooth and the staff was very helpful."</p>
+          <div class="reviewer-info">
+            <h4>Aditya Singh</h4>
+            <p>Car Enthusiast</p>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="stars">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+          </div>
+          <p class="review-text">"Great value for money! The cars are always clean and well-maintained. The customer support team is very responsive and helpful."</p>
+          <div class="reviewer-info">
+            <h4>Meera Patel</h4>
+            <p>Frequent Traveler</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slider-controls">
+        <button class="prev-btn"><i class="ri-arrow-left-s-line"></i></button>
+        <div class="slider-dots"></div>
+        <button class="next-btn"><i class="ri-arrow-right-s-line"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="col">
+      <div class="logo">
+        <h2>CruzeWheelz</h2><br />
+        <img src="img/logo/car logo.png" alt="Logo" />
+        <p>Premium car rental service <br>focused on quality, comfort, and exceptional <br>customer experience.</p>
+      </div>
+      <div class="follow">
+        <h4>Connect With Us</h4>
+        <div class="icon">
+          <a href="https://instagram.com/" target="_blank"><i class="ri-instagram-line"></i></a>
+          <a href="https://wa.me" target="_blank"><i class="ri-whatsapp-line"></i></a>
+          <a href="https://facebook.com" target="_blank"><i class="ri-facebook-fill"></i></a>
+          <a href="https://x.com/" target="_blank"><i class="ri-twitter-x-line"></i></a>
+          <a href="https://youtube.com" target="_blank"><i class="ri-youtube-line"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <h4>Quick Links</h4>
+      <a href="#">Home</a>
+      <a href="#feature">Browse Cars</a>
+      <a href="#">Services</a>
+      <a href="#">Help</a>
+      <div class="copyright">
+        <p>&copy; 2025 cruzewheelz | All Rights Reserved</p>
+      </div>
+    </div>
+
+    <div class="col">
+  <h4>Contact Us</h4>
+  <p><i class="ri-phone-line"></i> +91 98765 43210</p>
+  <p><i class="ri-mail-line"></i> contact@cruzewheelz.com</p>
+  <p><i class="ri-map-pin-line"></i> Hubli, Karnataka - 580020</p>
+</div>
+
+
+  </footer>
+  <script src="js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script>
+  flatpickr("#pickup-date", {
+    dateFormat: " J F, Y"
+  });
+
+  flatpickr("#return-date", {
+    dateFormat: "J F, Y",
+    
+  });
+  window.addEventListener("load", () => {
+    document.querySelector(".home").classList.add("loaded");
+  });
+  document.addEventListener("DOMContentLoaded", () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | cruzewheelz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+  <div class="login">
+    <div class="login-container">
+      <div class="login-left">
+        <img src="../img/bg/bg-3.png" alt="Car Image">
+      </div>
+      <div class="login-right">
+        <button class="close-btn" aria-label="Close login form">&times;</button>
+        <h2>Login to Your Account</h2>
+        <p>Enter your details to continue your journey with cruzewheelz.</p>
+
+        <form action="../php/login.php" method="POST" id="loginForm">
+          <input type="email" name="email" id="emailInput" placeholder="Email ID" autocomplete="email" required>
+          <input type="tel" name="phone" id="phoneInput" placeholder="Phone Number" autocomplete="tel" style="display: none;" disabled>
+          <input type="password" name="password" placeholder="Password" required autocomplete="current-password">
+          <button type="submit" class="login-btn">Login</button>
+        </form>
+
+        <div class="extra-options">
+          <a href="#" id="toggleLogin">Login with phone instead</a>
+          <a href="../html/forgot_password.html" class="forgot">Forgot password?</a>
+        </div>
+
+        <p class="signup-link">New member? <a href="../html/signup.html">Sign Up</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelector('.close-btn').addEventListener('click', () => {
+      window.location.href = "../index.html";
+    });
+
+    // Toggle between email and phone login
+    const toggleLink = document.getElementById("toggleLogin");
+    const emailInput = document.getElementById("emailInput");
+    const phoneInput = document.getElementById("phoneInput");
+
+    toggleLink.addEventListener("click", function (e) {
+      e.preventDefault();
+      const usingEmail = emailInput.style.display !== "none";
+
+      if (usingEmail) {
+        emailInput.style.display = "none";
+        emailInput.disabled = true;
+        phoneInput.style.display = "block";
+        phoneInput.disabled = false;
+        toggleLink.textContent = "Login with email instead";
+      } else {
+        phoneInput.style.display = "none";
+        phoneInput.disabled = true;
+        emailInput.style.display = "block";
+        emailInput.disabled = false;
+        toggleLink.textContent = "Login with phone instead";
+      }
+    });
+
+    // Set default (email) state
+    window.addEventListener("DOMContentLoaded", () => {
+      emailInput.disabled = false;
+      phoneInput.disabled = true;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+[01-Jun-2025 15:00:23 Europe/Berlin] PHP Warning:  require_once(vendor/razorpay/razorpay-php/Razorpay.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\cruzewheelz\php\verify_payment.php on line 15
+[01-Jun-2025 15:00:23 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'vendor/razorpay/razorpay-php/Razorpay.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\cruzewheelz\php\verify_payment.php:15
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\cruzewheelz\php\verify_payment.php on line 15
+[01-Jun-2025 15:04:05 Europe/Berlin] PHP Warning:  require_once(vendor/razorpay/razorpay-php/Razorpay.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\cruzewheelz\php\verify_payment.php on line 15
+[01-Jun-2025 15:04:05 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'vendor/razorpay/razorpay-php/Razorpay.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\cruzewheelz\php\verify_payment.php:15
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\cruzewheelz\php\verify_payment.php on line 15
+[01-Jun-2025 15:08:36 Europe/Berlin] PHP Warning:  require_once(vendor/razorpay/razorpay-php/Razorpay.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\cruzewheelz\php\verify_payment.php on line 15
+[01-Jun-2025 15:08:36 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'vendor/razorpay/razorpay-php/Razorpay.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\cruzewheelz\php\verify_payment.php:15
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\cruzewheelz\php\verify_payment.php on line 15
+[01-Jun-2025 15:10:30 Europe/Berlin] PHP Warning:  require_once(vendor/razorpay/razorpay-php/Razorpay.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\cruzewheelz\php\verify_payment.php on line 15
+[01-Jun-2025 15:10:30 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'vendor/razorpay/razorpay-php/Razorpay.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\cruzewheelz\php\verify_payment.php:15
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\cruzewheelz\php\verify_payment.php on line 15
+[01-Jun-2025 15:13:47 Europe/Berlin] PHP Warning:  require_once(vendor/razorpay/razorpay-php/Razorpay.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\cruzewheelz\php\verify_payment.php on line 20
+[01-Jun-2025 15:13:47 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'vendor/razorpay/razorpay-php/Razorpay.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\cruzewheelz\php\verify_payment.php:20
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\cruzewheelz\php\verify_payment.php on line 20
+[01-Jun-2025 15:16:32 Europe/Berlin] PHP Warning:  require_once(vendor/razorpay/razorpay-php/Razorpay.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\cruzewheelz\php\verify_payment.php on line 20
+[01-Jun-2025 15:16:32 Europe/Berlin] PHP Fatal error:  Uncaught Error: Failed opening required 'vendor/razorpay/razorpay-php/Razorpay.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\cruzewheelz\php\verify_payment.php:20
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\cruzewheelz\php\verify_payment.php on line 20
+[01-Jun-2025 15:19:19 Europe/Berlin] Direct redirect requested: Yes
+[01-Jun-2025 15:19:19 Europe/Berlin] Razorpay library not found at: C:\xampp\htdocs\cruzewheelz\php/vendor/razorpay/razorpay-php/Razorpay.php
+[01-Jun-2025 15:19:19 Europe/Berlin] Received form POST data: {"razorpay_payment_id":"pay_QbwhELAKUJRGx2","razorpay_order_id":"undefined","razorpay_signature":"undefined","booking_id":"24","direct_redirect":"true"}
+[01-Jun-2025 15:19:19 Europe/Berlin] Received payment verification request: {"razorpay_payment_id":"pay_QbwhELAKUJRGx2","razorpay_order_id":"undefined","razorpay_signature":"undefined","booking_id":"24","direct_redirect":"true"}
+[01-Jun-2025 15:19:19 Europe/Berlin] WARNING: Skipping signature verification because Razorpay library is not available
+[01-Jun-2025 15:19:19 Europe/Berlin] Payment data: {"razorpay_payment_id":"pay_QbwhELAKUJRGx2","razorpay_order_id":"undefined","razorpay_signature":"undefined","booking_id":"24","direct_redirect":"true"}
+[01-Jun-2025 15:19:19 Europe/Berlin] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'razorpay_payment_id' in 'field list'
+[01-Jun-2025 15:19:19 Europe/Berlin] Performing direct redirect to booking_success.html for booking ID: 24
+[01-Jun-2025 15:21:11 Europe/Berlin] Direct redirect requested: Yes
+[01-Jun-2025 15:21:11 Europe/Berlin] Razorpay library not found at: C:\xampp\htdocs\cruzewheelz\php/vendor/razorpay/razorpay-php/Razorpay.php
+[01-Jun-2025 15:21:11 Europe/Berlin] Received form POST data: {"razorpay_payment_id":"pay_QbwjDbGh5yaBdK","razorpay_order_id":"undefined","razorpay_signature":"undefined","booking_id":"25","direct_redirect":"true"}
+[01-Jun-2025 15:21:11 Europe/Berlin] Received payment verification request: {"razorpay_payment_id":"pay_QbwjDbGh5yaBdK","razorpay_order_id":"undefined","razorpay_signature":"undefined","booking_id":"25","direct_redirect":"true"}
+[01-Jun-2025 15:21:11 Europe/Berlin] WARNING: Skipping signature verification because Razorpay library is not available
+[01-Jun-2025 15:21:11 Europe/Berlin] Payment data: {"razorpay_payment_id":"pay_QbwjDbGh5yaBdK","razorpay_order_id":"undefined","razorpay_signature":"undefined","booking_id":"25","direct_redirect":"true"}
+[01-Jun-2025 15:21:11 Europe/Berlin] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'razorpay_payment_id' in 'field list'
+[01-Jun-2025 15:21:11 Europe/Berlin] Performing direct redirect to booking_success.html for booking ID: 25
+[01-Jun-2025 16:31:46 Europe/Berlin] Direct redirect requested: Yes
+[01-Jun-2025 16:31:46 Europe/Berlin] Razorpay library not found at: C:\xampp\htdocs\cruzewheelz\php/vendor/razorpay/razorpay-php/Razorpay.php
+[01-Jun-2025 16:31:46 Europe/Berlin] Received form POST data: {"razorpay_payment_id":"pay_Qbxvm3AHtH3Ggg","razorpay_order_id":"undefined","razorpay_signature":"undefined","booking_id":"26","direct_redirect":"true"}
+[01-Jun-2025 16:31:46 Europe/Berlin] Received payment verification request: {"razorpay_payment_id":"pay_Qbxvm3AHtH3Ggg","razorpay_order_id":"undefined","razorpay_signature":"undefined","booking_id":"26","direct_redirect":"true"}
+[01-Jun-2025 16:31:46 Europe/Berlin] WARNING: Skipping signature verification because Razorpay library is not available
+[01-Jun-2025 16:31:46 Europe/Berlin] Payment data: {"razorpay_payment_id":"pay_Qbxvm3AHtH3Ggg","razorpay_order_id":"undefined","razorpay_signature":"undefined","booking_id":"26","direct_redirect":"true"}
+[01-Jun-2025 16:31:46 Europe/Berlin] Database error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'razorpay_payment_id' in 'field list'
+[01-Jun-2025 16:31:46 Europe/Berlin] Performing direct redirect to booking_success.html for booking ID: 26
+[01-Jun-2025 19:59:55 Europe/Berlin] Direct redirect requested: Yes
+[01-Jun-2025 19:59:55 Europe/Berlin] Razorpay library not found at: C:\xampp\htdocs\cruzewheelz\php/vendor/razorpay/razorpay-php/Razorpay.php
+[01-Jun-2025 19:59:55 Europe/Berlin] Received form POST data: {"razorpay_payment_id":"pay_Qc1Tc7fOFPryQS","razorpay_order_id":"undefined","razorpay_signature":"undefined","booking_id":"27","direct_redirect":"true"}
+[01-Jun-2025 19:59:55 Europe/Berlin] Received payment verification request: {"razorpay_payment_id":"pay_Qc1Tc7fOFPryQS","razorpay_order_id":"undefined","razorpay_signature":"undefined","booking_id":"27","direct_redirect":"true"}
+[01-Jun-2025 19:59:55 Europe/Berlin] WARNING: Skipping signature verification because Razorpay library is not available
+[01-Jun-2025 19:59:55 Europe/Berlin] Payment data: {"razorpay_payment_id":"pay_Qc1Tc7fOFPryQS","razorpay_order_id":"undefined","razorpay_signature":"undefined","booking_id":"27","direct_redirect":"true"}
+[01-Jun-2025 19:59:55 Europe/Berlin] Booking updated successfully for ID: 27
+[01-Jun-2025 19:59:55 Europe/Berlin] Performing direct redirect to booking_success.html for booking ID: 27
+[04-Jun-2025 22:08:27 Europe/Berlin] Direct redirect requested: Yes
+[04-Jun-2025 22:08:27 Europe/Berlin] Razorpay library not found at: C:\xampp\htdocs\cruzewheelz\php/vendor/razorpay/razorpay-php/Razorpay.php
+[04-Jun-2025 22:08:27 Europe/Berlin] Received form POST data: {"razorpay_payment_id":"pay_QdFGnuI2ih0n1p","razorpay_order_id":"undefined","razorpay_signature":"undefined","booking_id":"1","direct_redirect":"true"}
+[04-Jun-2025 22:08:27 Europe/Berlin] Received payment verification request: {"razorpay_payment_id":"pay_QdFGnuI2ih0n1p","razorpay_order_id":"undefined","razorpay_signature":"undefined","booking_id":"1","direct_redirect":"true"}
+[04-Jun-2025 22:08:27 Europe/Berlin] WARNING: Skipping signature verification because Razorpay library is not available
+[04-Jun-2025 22:08:27 Europe/Berlin] Payment data: {"razorpay_payment_id":"pay_QdFGnuI2ih0n1p","razorpay_order_id":"undefined","razorpay_signature":"undefined","booking_id":"1","direct_redirect":"true"}
+[04-Jun-2025 22:08:27 Europe/Berlin] Booking updated successfully for ID: 1
+[04-Jun-2025 22:08:27 Europe/Berlin] Performing direct redirect to booking_success.html for booking ID: 1
+[06-Jun-2025 12:16:31 Europe/Berlin] Direct redirect requested: Yes
+[06-Jun-2025 12:16:31 Europe/Berlin] Razorpay library not found at: C:\xampp\htdocs\cruzewheelz\php/vendor/razorpay/razorpay-php/Razorpay.php
+[06-Jun-2025 12:16:31 Europe/Berlin] Received form POST data: {"razorpay_payment_id":"pay_QdsFjlPVGZ0jbs","razorpay_order_id":"undefined","razorpay_signature":"undefined","booking_id":"8","direct_redirect":"true"}
+[06-Jun-2025 12:16:31 Europe/Berlin] Received payment verification request: {"razorpay_payment_id":"pay_QdsFjlPVGZ0jbs","razorpay_order_id":"undefined","razorpay_signature":"undefined","booking_id":"8","direct_redirect":"true"}
+[06-Jun-2025 12:16:31 Europe/Berlin] WARNING: Skipping signature verification because Razorpay library is not available
+[06-Jun-2025 12:16:31 Europe/Berlin] Payment data: {"razorpay_payment_id":"pay_QdsFjlPVGZ0jbs","razorpay_order_id":"undefined","razorpay_signature":"undefined","booking_id":"8","direct_redirect":"true"}
+[06-Jun-2025 12:16:31 Europe/Berlin] Booking updated successfully for ID: 8
+[06-Jun-2025 12:16:31 Europe/Berlin] Performing direct redirect to booking_success.html for booking ID: 8

@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>cruzewheelz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="../img/logo/car logo.png" alt="Logo" />
+      <span class="logo-text">CruzeWheelz<p>Drive Your Dream</p></span>
+    </div>
+  
+    <ul class="navbar">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../index.html#ride">Ride</a></li>
+      <li><a href="../index.html#feature">Cars</a></li>
+      <li><a href="#">About</a></li> 
+      <li><a href="../index.html#reviews">Reviews</a></li>
+    </ul>
+    </div>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #fffb00;
+            --dark: #000000;
+            --light: #ffffff;
+            --gray: #1a1a1a;
+            --gray-light: #2b2b2b;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--light);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        header {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(19, 18, 18);
+    padding: 0px 50px;
+    height: 80px;
+    box-sizing: border-box;
+    border-bottom: 0.5px solid #2b2b2b;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+header .logo img {
+    height: 60px; 
+}
+
+.logo span {
+    font-size: 22px;
+    padding: 0 15px;
+    font-weight: bold;
+    color: #ffffff;
+    font-family: "Poppins", sans-serif;
+}
+
+.logo p{
+  font-size: 10px;
+  font-family: cambria ;
+  margin-left: 90px;
+}
+
+.navbar {
+    display: flex;
+    list-style: none;
+    margin-right: 630px;
+}
+
+.navbar li {
+    position: relative;
+}
+
+.navbar a {
+    position: relative;
+    font-size: 18px;
+    padding: 10px 20px;
+    color: white;
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    color: yellow;
+}
+
+.navbar a::after {
+    content: "";
+    width: 0;
+    height: 3px;
+    background: yellow;
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s ease-in-out;
+}
+
+.navbar a:hover::after {
+    width: 100%;
+}
+
+.header-button a {
+    padding: 10px 20px;
+    color: rgb(0, 0, 0);
+    background: white;
+    border-radius: 10px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.header-button .sign-in {
+  margin-left: 10px;
+    background: #fffb00;
+    color: #000000;
+    border-radius: 10px;
+    transition: 0.3s ease;
+}
+
+.header-button .sign-in:hover {
+    background:rgb(255, 217, 0);
+    color: #000000;
+}
+
+.button,
+.header-button .sign-in {
+    transition: transform 1s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.button:hover,
+.header-button .sign-in:hover {
+    transform: scale(1.05);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                        url('../img/hero-bg.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 100px 0;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, var(--dark) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-title span {
+            color: var(--primary);
+            display: block;
+        }
+
+        .hero-text {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background: var(--gray);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--dark);
+            border: 1px solid var(--gray-light);
+            border-radius: 15px;
+            padding: 2.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-icon i {
+            font-size: 2rem;
+            color: var(--dark);
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 100px 0;
+            background: var(--dark);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--light);
+            opacity: 0.8;
+        }
+
+        /* Timeline Section */
+        .timeline {
+            padding: 100px 0;
+            background: var(--gray);
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: var(--primary);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .timeline-content {
+            background: var(--dark);
+            border: 1px solid var(--gray-light);
+            border-radius: 15px;
+            padding: 2rem;
+            width: calc(50% - 30px);
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 100px 0;
+            background: var(--gray);
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-text {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: var(--dark);
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+/* Footer */
+footer {
+    background-color: rgb(19, 18, 18);
+    color: rgb(255, 255, 255);
+    text-align: start;
+    padding: 15px 160px;
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0px 0px 2px rgb(77, 75, 75);
+}
+
+footer .col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer .logo {
+  margin-left: -40px;
+    text-align: center;
+    cursor: pointer;
+}
+footer .logo p{
+  text-align: center;
+  font-size: 12px;
+  margin-left: -40px;
+  font-family: "Poppins";
+  
+}
+
+footer .logo img{
+    margin-top: -50px;
+    height: 100px;
+    width: auto; 
+    cursor: pointer;
+    margin-bottom: -20px;
+}
+
+footer .logo p:hover{
+  color: white;
+}
+
+footer h4 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  color: #facc15;
+    
+}
+
+footer p {
+    letter-spacing: 1px;
+    text-align: center;
+    font-size: 13px;
+    margin: 10px 10px ;
+    cursor: pointer;
+}
+
+footer p:hover{
+  color: yellow;
+}
+
+footer a {
+    text-align: start;
+    font-size: 13px;
+    text-decoration: none;
+    margin: 8px 0px ;
+    color: #ffffff;
+}
+
+footer a:hover {
+    color: yellow;
+}
+
+footer .follow{
+    margin-top: 20px;
+    text-align: start;
+    margin-left: -100px;
+}
+
+footer .follow i{
+  color: #ffffff;
+  padding-right: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  margin: 10px 5px;
+}
+
+footer .follow i:hover {
+  color:yellow;
+}
+
+.map-container iframe {
+ 
+  border: none;
+  border-radius: 12px;
+  display: block;
+}
+
+.map-container:hover {
+  transform: scale(1.01);
+  transition: transform 0.3s ease;
+}
+
+.copyright  {
+  align-items:center;
+  margin-top: 100px;
+}  
+
+.copyright :hover{
+  color: white;
+}
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--dark);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                transition: left 0.3s ease;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
+            }
+
+            .timeline-dot {
+                left: 30px;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Animations */
+        [data-aos] {
+            pointer-events: none;
+        }
+        [data-aos].aos-animate {
+            pointer-events: auto;
+        }
+    </style>
+</header>
+<body>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content" data-aos="fade-right">
+                <h1 class="hero-title">
+                    Your Journey
+                    <span>Our Passion</span>
+                </h1>
+                <p class="hero-text">
+                    At CruzeWheelz, we're not just renting cars - we're creating unforgettable experiences. 
+                    Our mission is to make car rental simple, affordable, and enjoyable for everyone.
+                </p>
+                <a href="../index.html" class="cta-button">Explore Our Fleet</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3 class="feature-title">Wide Selection</h3>
+                    <p>Choose from our extensive fleet of vehicles, from economy to luxury cars.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="feature-title">24/7 Support</h3>
+                    <p>Our dedicated team is always ready to assist you with any queries.</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Secure Booking</h3>
+                    <p>Your safety and security are our top priorities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card" data-aos="fade-up">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Vehicle Models</div>
+                </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Successful Rentals</div>
+                </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Customer Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline">
+        <div class="container">
+            <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-content">
+                    <h3>2020</h3>
+                    <p>Founded with a vision to revolutionize car rental experience</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-content">
+                    <h3>2021</h3>
+                    <p>Expanded our fleet to 50+ vehicles</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-content">
+                    <h3>2022</h3>
+                    <p>Launched our mobile app for easier booking</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-content">
+                    <h3>2023</h3>
+                    <p>Reached 1000+ successful rentals milestone</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2 class="cta-title" data-aos="fade-up">Ready to Start Your Journey?</h2>
+            <p class="cta-text" data-aos="fade-up" data-aos-delay="100">
+                Join thousands of satisfied customers who trust CruzeWheelz for their car rental needs.
+            </p>
+            <a href="../index.html" class="cta-button" data-aos="fade-up" data-aos-delay="200">Book Now</a>
+        </div>
+    </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="col">
+      <div class="logo">
+        <h2>CruzeWheelz</h2><br />
+        <img src="img/logo/car logo.png" alt="Logo" />
+        <p>Premium car rental service <br>focused on quality, comfort, and exceptional <br>customer experience.</p>
+      </div>
+      <div class="follow">
+        <h4>Connect With Us</h4>
+        <div class="icon">
+          <a href="https://instagram.com/" target="_blank"><i class="ri-instagram-line"></i></a>
+          <a href="https://wa.me" target="_blank"><i class="ri-whatsapp-line"></i></a>
+          <a href="https://facebook.com" target="_blank"><i class="ri-facebook-fill"></i></a>
+          <a href="https://x.com/" target="_blank"><i class="ri-twitter-x-line"></i></a>
+          <a href="https://youtube.com" target="_blank"><i class="ri-youtube-line"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <h4>Quick Links</h4>
+      <a href="#">Home</a>
+      <a href="#feature">Browse Cars</a>
+      <a href="#">Services</a>
+      <a href="#">Help</a>
+      <div class="copyright">
+        <p>&copy; 2025 cruzewheelz | All Rights Reserved</p>
+      </div>
+    </div>
+
+    <div class="col">
+  <h4>Contact Us</h4>
+  <p><i class="ri-phone-line"></i> +91 98765 43210</p>
+  <p><i class="ri-mail-line"></i> contact@cruzewheelz.com</p>
+  <p><i class="ri-map-pin-line"></i> Hubli, Karnataka - 580020</p>
+</div>
+
+
+  </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

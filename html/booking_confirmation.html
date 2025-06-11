@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="razorpay-svg-height" content="24">
+    <title>Confirm Booking - CruzeWheelz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #0e0e0e;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #0e0e0e;
+            padding: 20px 40px;
+            border-bottom: 1px solid #1c1c1c;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            color: #ffcd00;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: #ffcd00;
+        }
+
+        .confirmation-container {
+            max-width: 100%;
+            min-height: calc(100vh - 80px);
+            display: flex;
+            gap: 40px;
+            padding: 40px;
+        }
+
+        .left-section {
+            flex: 6;
+        }
+
+        .right-section {
+            flex: 4;
+            position: sticky;
+            top: 40px;
+            align-self: flex-start;
+            display: flex;
+            flex-direction: column;
+            min-width: 500px;
+        }
+
+        .confirmation-header {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .confirmation-header h1 {
+            font-size: 2.2rem;
+            color: #ffcd00;
+            margin-bottom: 10px;
+        }
+
+        .confirmation-header p {
+            color: #aaa;
+        }
+
+        .booking-details {
+            background: #1c1c1c;
+            border-radius: 12px;
+            padding: 30px;
+        }
+
+        .car-info {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+
+        .car-image {
+            width: 400px;
+            height: 250px;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .car-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
+        }
+
+        .car-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .car-details h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #ffcd00;
+        }
+
+        .car-details p {
+            color: #aaa;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .locations-section {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .pickup-location, .return-location {
+            flex: 1;
+            background: #000;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .location-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .location-header i {
+            font-size: 1.2rem;
+            color: #ffcd00;
+        }
+
+        .location-header h3 {
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .location-select {
+            width: 100%;
+            padding: 12px;
+            background: #1c1c1c;
+            border: 1px solid #333;
+            color: #fff;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        .location-select:focus {
+            border-color: #ffcd00;
+            outline: none;
+        }
+
+        .booking-summary {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .summary-item {
+            background: #000;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .summary-item h3 {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-bottom: 8px;
+        }
+
+        .summary-item p {
+            font-size: 1.1rem;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .price-breakdown {
+            background: #000;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 0;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            color: #aaa;
+            font-size: 1rem;
+        }
+
+        .price-row.total {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #333;
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .payment-section {
+            background: #1c1c1c;
+            border-radius: 12px;
+            padding: 30px;
+            height: calc(100vh - 160px);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .payment-section h2 {
+            color: #ffcd00;
+            font-size: 1.6rem;
+            margin: 0;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            flex: 1;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .payment-method {
+            background: #000;
+            padding: 25px 20px;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .payment-method:hover {
+            border-color: #ffcd00;
+            transform: translateY(-5px);
+        }
+
+        .payment-method.selected {
+            border-color: #ffcd00;
+            background: #ffcd00;
+            color: #000;
+            transform: translateY(-5px);
+        }
+
+        .payment-method i {
+            font-size: 2.2rem;
+        }
+
+        .payment-method p {
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .confirm-btn {
+            background: #ffcd00;
+            color: #000;
+            border: none;
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0;
+        }
+
+        .confirm-btn:hover {
+            background: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        .error-message {
+            color: #ff4444;
+            text-align: center;
+            font-size: 1.1rem;
+            display: none;
+            margin: 0;
+        }
+
+        @media (max-width: 1400px) {
+            .confirmation-container {
+                gap: 30px;
+                padding: 30px;
+            }
+
+            .right-section {
+                min-width: 450px;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .confirmation-container {
+                flex-direction: column;
+            }
+
+            .right-section {
+                width: 100%;
+                min-width: 0;
+                position: static;
+            }
+
+            .payment-section {
+                height: auto;
+                gap: 25px;
+            }
+
+            .payment-methods {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .confirmation-container {
+                padding: 20px;
+                gap: 20px;
+            }
+
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-method {
+                padding: 25px;
+            }
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #ffcd00;
+            border-top: 5px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .content-container {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Main content -->
+    <div id="content" class="content-container">
+        <header>
+            <div class="header-container">
+                <a href="../index.html" class="logo">cruzewheelz</a>
+                <nav>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="#">Vehicles</a></li>
+                        <li><a href="#">Deals</a></li>
+                        <li><a href="#">Locations</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <div class="confirmation-container">
+            <div class="left-section">
+                <div class="confirmation-header">
+                    <h1>Confirm Your Booking</h1>
+                    <p>Please review your booking details and select a payment method</p>
+                </div>
+
+                <div class="booking-details">
+                    <div class="car-info">
+                        <div class="car-image">
+                            <img id="car-img" src="" alt="Car Image">
+                        </div>
+                        <div class="car-details">
+                            <h2 id="car-name">Loading...</h2>
+                            <p id="car-category">Loading...</p>
+                            <p id="car-transmission">Loading...</p>
+                        </div>
+                    </div>
+
+                    <div class="locations-section">
+                        <div class="pickup-location">
+                            <div class="location-header">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <h3>Pickup Location</h3>
+                            </div>
+                            <select id="pickup-location" class="location-select" required>
+                                <option value="">Select pickup location</option>
+                            </select>
+                        </div>
+
+                        <div class="return-location">
+                            <div class="location-header">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <h3>Return Location</h3>
+                            </div>
+                            <select id="return-location" class="location-select" required>
+                                <option value="">Select return location</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="booking-summary">
+                        <div class="summary-item">
+                            <h3>Pickup Date</h3>
+                            <p id="pickup-date">Loading...</p>
+                        </div>
+                        <div class="summary-item">
+                            <h3>Return Date</h3>
+                            <p id="return-date">Loading...</p>
+                        </div>
+                        <div class="summary-item">
+                            <h3>Duration</h3>
+                            <p id="duration">Loading...</p>
+                        </div>
+                        <div class="summary-item">
+                            <h3>Daily Rate</h3>
+                            <p id="daily-rate">Loading...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-section">
+                <div class="payment-section">
+                    <h2>Payment Details</h2>
+                    <div class="price-breakdown">
+                        <div class="price-row">
+                            <span>Daily Rate × Days</span>
+                            <span id="subtotal">₹0</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Location Fee</span>
+                            <span id="location-fee">₹0</span>
+                        </div>
+                        <div class="price-row total">
+                            <span>Total Amount</span>
+                            <span id="total-amount">₹0</span>
+                        </div>
+                    </div>
+
+                    <div class="payment-methods">
+                        <div class="payment-method" data-method="razorpay">
+                            <i class="fas fa-credit-card"></i>
+                            <p>Razorpay</p>
+                        </div>
+                        <div class="payment-method" data-method="cash">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <p>Cash </p>
+                        </div>
+                    </div>
+                    <button id="confirm-booking" class="confirm-btn">Proceed to Payment</button>
+                    <div id="error-message" class="error-message"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Razorpay Script -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        // Function to redirect to login
+        function redirectToLogin() {
+            const currentUrl = encodeURIComponent(window.location.href);
+            window.location.href = `login.html?redirect=${currentUrl}`;
+        }
+
+        // Function to show error
+        function showError(message) {
+            const errorMessage = document.getElementById('error-message');
+            if (errorMessage) {
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+            }
+        }
+
+        // Function to initialize the page
+        async function initializePage() {
+            try {
+                // Check login status first
+                const loginResponse = await fetch('../php/check_login.php');
+                const loginData = await loginResponse.json();
+
+                if (!loginData.success || !loginData.logged_in) {
+                    redirectToLogin();
+                    return;
+                }
+
+                // Show content and hide loading overlay
+                document.getElementById('loading-overlay').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+
+                // Get booking details from URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const carId = urlParams.get('car_id');
+                const pickupDate = urlParams.get('pickup_date');
+                const returnDate = urlParams.get('return_date');
+                const totalAmount = urlParams.get('total');
+
+                // Validate required parameters
+                if (!carId || !pickupDate || !returnDate || !totalAmount) {
+                    throw new Error('Missing required booking parameters');
+                }
+
+                // Load car details
+                const carResponse = await fetch(`../php/get_car_details.php?id=${carId}`);
+                const carData = await carResponse.json();
+                
+                if (!carData.success) {
+                    throw new Error('Failed to load car details');
+                }
+
+                // Update car information
+                const car = carData.car;
+                document.getElementById('car-name').textContent = car.name;
+                document.getElementById('car-category').textContent = car.category;
+                document.getElementById('car-transmission').textContent = car.transmission;
+                document.getElementById('car-img').src = `../img/cars/${car.image}`;
+                document.getElementById('daily-rate').textContent = `₹${car.price}/day`;
+
+                // Load locations
+                const locationResponse = await fetch('../php/get_locations.php');
+                const locationData = await locationResponse.json();
+
+                if (!locationData.success) {
+                    throw new Error('Failed to load locations');
+                }
+
+                // Update location dropdowns
+                const pickupSelect = document.getElementById('pickup-location');
+                const returnSelect = document.getElementById('return-location');
+                
+                pickupSelect.innerHTML = '<option value="">Select pickup location</option>';
+                returnSelect.innerHTML = '<option value="">Select return location</option>';
+                
+                locationData.locations.forEach(location => {
+                    const option = document.createElement('option');
+                    option.value = location.id;
+                    option.textContent = location.name;
+                    pickupSelect.appendChild(option.cloneNode(true));
+                    returnSelect.appendChild(option);
+                });
+
+                // Set booking dates and duration
+                document.getElementById('pickup-date').textContent = new Date(pickupDate).toLocaleDateString();
+                document.getElementById('return-date').textContent = new Date(returnDate).toLocaleDateString();
+                
+                const start = new Date(pickupDate);
+                const end = new Date(returnDate);
+                const days = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
+                document.getElementById('duration').textContent = `${days} days`;
+
+                // Initialize payment method selection
+                const paymentMethods = document.querySelectorAll('.payment-method');
+                paymentMethods.forEach(method => {
+                    method.addEventListener('click', function() {
+                        paymentMethods.forEach(m => m.classList.remove('selected'));
+                        this.classList.add('selected');
+                    });
+                });
+
+                // Initialize price updates
+                function updatePrices() {
+                    const pickupLocation = pickupSelect.value;
+                    const returnLocation = returnSelect.value;
+                    const locationFee = (pickupLocation !== returnLocation && pickupLocation && returnLocation) ? 1000 : 0;
+                    
+                    document.getElementById('location-fee').textContent = `₹${locationFee}`;
+                    document.getElementById('subtotal').textContent = `₹${totalAmount}`;
+                    document.getElementById('total-amount').textContent = `₹${parseInt(totalAmount) + locationFee}`;
+                }
+
+                pickupSelect.addEventListener('change', updatePrices);
+                returnSelect.addEventListener('change', updatePrices);
+
+                // Initialize booking confirmation
+                document.getElementById('confirm-booking').addEventListener('click', async function() {
+                    try {
+                        const pickupLocation = pickupSelect.value;
+                        const returnLocation = returnSelect.value;
+                        const selectedPayment = document.querySelector('.payment-method.selected');
+
+                        if (!pickupLocation || !returnLocation) {
+                            throw new Error('Please select both pickup and return locations');
+                        }
+
+                        if (!selectedPayment) {
+                            throw new Error('Please select a payment method');
+                        }
+
+                        // Show loading overlay during booking
+                        document.getElementById('loading-overlay').style.display = 'flex';
+
+                        const bookingData = {
+                            car_id: carId,
+                            pickup_date: pickupDate,
+                            return_date: returnDate,
+                            pickup_location_id: pickupLocation,
+                            return_location_id: returnLocation,
+                            payment_method: selectedPayment.dataset.method,
+                            total_amount: document.getElementById('total-amount').textContent.replace('₹', '')
+                        };
+
+                        // First create the booking
+                        const bookingResponse = await fetch('../php/create_booking.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(bookingData)
+                        });
+
+                        const bookingResult = await bookingResponse.json();
+
+                        if (!bookingResult.success) {
+                            throw new Error(bookingResult.message || 'Booking failed');
+                        }
+
+                        // Handle different payment methods
+                        if (selectedPayment.dataset.method === 'cash') {
+                            // For cash on delivery, directly redirect to success page
+                            document.getElementById('loading-overlay').style.display = 'none';
+                            window.location.href = `../html/booking_success.html?id=${bookingResult.booking_id}`;
+                            return;
+                        } else {
+                            // Function to verify payment
+                            function verifyPayment(response, bookingId) {
+                                try {
+                                    console.log('Starting payment verification...');
+                                    console.log('Booking ID:', bookingId);
+                                    console.log('Payment response:', response); 
+
+                                    // Show loading overlay
+                                    document.getElementById('loading-overlay').style.display = 'flex';
+                                    
+                                    console.log('Using form-based verification with direct redirect');
+                                    
+                                    // Create a form for direct server-side redirection
+                                    const form = document.createElement('form');
+                                    form.method = 'POST';
+                                    form.action = '../php/verify_payment.php';
+                                    form.target = '_top'; // Ensure it targets the top frame
+                                    
+                                    // Add payment data as hidden fields
+                                    const addField = (name, value) => {
+                                        const field = document.createElement('input');
+                                        field.type = 'hidden';
+                                        field.name = name;
+                                        field.value = value;
+                                        form.appendChild(field);
+                                    };
+                                    
+                                    // Add all required fields
+                                    addField('razorpay_payment_id', response.razorpay_payment_id);
+                                    addField('razorpay_order_id', response.razorpay_order_id);
+                                    addField('razorpay_signature', response.razorpay_signature);
+                                    addField('booking_id', bookingId);
+                                    addField('direct_redirect', 'true');
+                                    
+                                    // Append form to body and submit
+                                    document.body.appendChild(form);
+                                    
+                                    console.log('Submitting verification form for direct redirect');
+                                    form.submit();
+                                    
+                                } catch (error) {
+                                    console.error('Payment verification error:', error);
+                                    document.getElementById('loading-overlay').style.display = 'none';
+                                    showError('Payment verification failed. Please contact support.');
+                                    
+                                    // Fallback - try direct navigation
+                                    setTimeout(() => {
+                                        try {
+                                            window.location.href = `../html/booking_success.html?id=${bookingId}`;
+                                        } catch (e) {
+                                            console.error('Fallback navigation failed:', e);
+                                        }
+                                    }, 3000);
+                                }
+                            }
+
+                            // Initialize Razorpay payment
+                            const options = {
+                                key: "rzp_test_RtmrzqChi9YPHo",
+                                amount: bookingData.total_amount * 100,
+                                currency: "INR",
+                                name: "CruzeWheelz",
+                                description: "Car Rental Booking",
+                                image: "../img/logo.png",
+                                order_id: bookingResult.razorpay_order_id,
+                                handler: function (response) {
+                                    console.log('Razorpay payment successful, response:', response);
+                                    // Add a small delay before verification to ensure Razorpay modal is fully closed
+                                    setTimeout(() => {
+                                        verifyPayment(response, bookingResult.booking_id);
+                                    }, 500);
+                                },
+                                prefill: {
+                                    name: bookingResult.user_name,
+                                    email: bookingResult.user_email,
+                                    contact: bookingResult.user_phone
+                                },
+                                theme: {
+                                    color: "#ffcd00"
+                                },
+                                modal: {
+                                    ondismiss: function() {
+                                        document.getElementById('loading-overlay').style.display = 'none';
+                                    }
+                                }
+                            };
+
+                            const rzp = new Razorpay(options);
+                            rzp.open();
+                        }
+
+                    } catch (error) {
+                        document.getElementById('loading-overlay').style.display = 'none';
+                        showError(error.message);
+                    }
+                });
+
+            } catch (error) {
+                console.error('Initialization error:', error);
+                showError('Failed to initialize booking page. Please try again.');
+            }
+        }
+
+        // Start initialization when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
+</body>
+</html>

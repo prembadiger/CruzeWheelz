@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up | cruzewheelz</title>
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+    <div class="login">
+        <div class="login-container">
+            <!-- Left Image Section -->
+            <div class="login-left">
+                <img src="../img/bg/bg-3.png" alt="Car Image">
+            </div>
+
+            <!-- Right Form Section -->
+            <div class="login-right">
+                <button class="close-btn" title="Close">&times;</button>
+                
+                <h2>Create an Account</h2>
+                <p>Welcome! Please provide your details below<br>to create your account and start booking.</p>
+
+                <form action="../php/signup.php" method="POST" autocomplete="on">
+                    <input type="text" name="fullname" placeholder="Full Name" required autocomplete="name">
+
+                    <input type="text" name="phone" placeholder="Phone Number" required pattern="^\+?[0-9]{10,15}$" autocomplete="tel">
+
+                    <input type="email" name="email" placeholder="Email Id" required autocomplete="email">
+
+                    <input type="password" name="password" placeholder="Password" required autocomplete="new-password">
+
+                    <button type="submit" class="login-btn">Sign Up</button>
+                </form>
+
+                <p class="signup-link">
+                    Already have an account?
+                    <a href="../html/login.html">Login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Close button redirect script -->
+    <script>
+        document.querySelector('.close-btn').addEventListener('click', () => {
+            window.location.href = "../index.html"; // Redirect to homepage
+        });
+    </script>
+</body>
+</html>

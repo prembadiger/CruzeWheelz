@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Car Details</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    body {
+      background-color: #0e0e0e;
+      color: #fff;
+      line-height: 1.6;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .hidden {
+      display: none !important;
+    }
+
+    header {
+      background-color: #0e0e0e;
+      padding: 20px 40px;
+      border-bottom: 1px solid #1c1c1c;
+    }
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.8rem;
+      color: #ffcd00;
+      font-weight: bold;
+    }
+    nav ul {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+    }
+    nav a:hover {
+      color: #ffcd00;
+    }
+
+    .car-details {
+      padding: 40px;
+      max-width: 1400px;
+      margin: auto;
+    }
+    .car-title-section h1 {
+      font-size: 2.2rem;
+    }
+    .car-title-section p {
+      color: #aaa;
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
+    .car-content {
+      display: flex;
+      gap: 40px;
+      margin-top: 30px;
+    }
+
+    .car-left {
+      flex: 3;
+    }
+    .car-image-carousel {
+      width: 100%;
+      height: 380px;
+      background: #1c1c1c;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .car-image-carousel img {
+      width: 100%;
+      max-height: 360px;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+    .car-tabs {
+      display: flex;
+      margin: 20px 0;
+    }
+    .tab-btn {
+      background: #1c1c1c;
+      border: none;
+      color: #aaa;
+      padding: 12px 20px;
+      cursor: pointer;
+      border-radius: 8px 8px 0 0;
+      margin-right: 10px;
+    }
+    .tab-btn.active {
+      background: #000;
+      color: #fff;
+      font-weight: bold;
+    }
+    .tab-content {
+      background: #1c1c1c;
+      padding: 20px;
+      border-radius: 0 0 12px 12px;
+    }
+
+  #overview-tab h3 {
+    font-size: 1.4rem;
+    color: #ffcd00;
+    }
+
+  #car-description {
+    color: #ccc;
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    }
+
+    
+    .location-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .location-tags .tag {
+      background: #000;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      border: 1px solid #333;
+    }
+
+    .car-right {
+      flex: 1;
+    }
+    
+    .booking-box {
+      background: #1c1c1c;
+      padding: 20px;
+      border-radius: 12px;
+    }
+    
+    .login-required {
+      text-align: center;
+      padding: 20px;
+      background: #1c1c1c;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    
+    .login-required p {
+      color: #aaa;
+      margin-bottom: 15px;
+    }
+    
+    .login-btn {
+      background: #ffcd00;
+      color: #000;
+      border: none;
+      padding: 12px 24px;
+      font-weight: bold;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .login-btn:hover {
+      background: #ffd700;
+    }
+
+    .booking-box label {
+      display: block;
+      margin-top: 15px;
+      font-size: 0.9rem;
+    }
+    .booking-box input[type="date"] {
+      background: #000;
+      border: none;
+      color: #fff;
+      padding: 10px;
+      width: 100%;
+      border-radius: 6px;
+      margin-top: 5px;
+    }
+    .rate-info p {
+      margin-top: 10px;
+      color: #ccc;
+      font-size: 0.95rem;
+    }
+    .booking-box h3 span {
+      color: #ffcd00;
+    }
+    .book-btn {
+      background: #ffcd00;
+      color: #000;
+      border: none;
+      width: 100%;
+      padding: 12px;
+      font-weight: bold;
+      font-size: 1rem;
+      border-radius: 6px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    .booking-box small {
+      display: block;
+      margin-top: 8px;
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+
+    
+/* Features Section */
+#car-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Creates two columns */
+  gap: 15px; /* Adds space between columns */
+  margin-top: 20px; /* Top margin to separate from the previous section */
+}
+
+#car-features li {
+  list-style: none; /* Remove default bullet points */
+  padding: 12px; /* Add padding to each list item */
+  border-radius: 6px; /* Rounded corners */
+  color: #eee; /* Light gray text color */
+  font-size: 15px; /* Slightly larger text */
+  display: flex; /* Use flexbox to align the icon and text */
+  align-items: center; /* Vertically center the icon and text */
+  gap: 15px; /* Space between the icon and text */
+  /* Dark background for the feature items */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth hover effect */
+  position: relative; /* Positioning for the bullet */
+  padding-left: 30px; /* Additional space on the left to make room for the bullet */
+}
+
+#car-features li::before {
+  content: "\2022"; /* Unicode for bullet point */
+  font-size: 2rem; /* Increased size of the bullet */
+  color: #ffcd00; /* Golden color for the bullet */
+  position: absolute; /* Positioning to the left of the text */
+  left: 10px; /* Space before the bullet */
+  top: 50%; /* Vertically center the bullet */
+  transform: translateY(-50%); /* Adjust for perfect vertical alignment */
+}
+
+
+
+/* Specifications Section - Grid layout for two columns */
+#car-specifications {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Creates two columns */
+  gap: 15px;
+  margin-top: 10px;
+}
+
+#car-specifications li {
+  list-style: none;
+  padding: 12px;
+  border-radius: 6px;
+  color: #eee;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+  background: #111;
+  list-style: none;
+}
+
+#car-specifications li::before {
+  content: '\f1b9'; /* Unicode for the car icon */
+  font-family: 'Font Awesome 5 Free'; /* Font Awesome family */
+  font-weight: 900; /* Font weight for solid icons */
+  color: #aaa;
+  font-size: 1.2rem; /* Adjust size of icon */
+  margin-right: 10px; /* Space between icon and text */
+  color: #ffcd00;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <a href="index.html" class="logo">cruzewheelz</a>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="#">Vehicles</a></li>
+          <li><a href="#">Deals</a></li>
+          <li><a href="#">Locations</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="car-details">
+    <section class="car-title-section">
+      <h1 id="car-name">Car Name</h1>
+      <p><span id="car-rating">4.9</span> <span id="car-category">Category</span></p>
+    </section>
+
+    <section class="car-content">
+      <div class="car-left">
+        <div class="car-image-carousel">
+          <img id="main-car-image" src="" alt="Car image" />
+        </div>
+
+        <div class="car-tabs">
+          <button class="tab-btn active" data-tab="overview">Overview</button>
+          <button class="tab-btn" data-tab="features">Features</button>
+          <button class="tab-btn" data-tab="specs">Specifications</button>
+        </div>
+
+        <div class="tab-content" id="overview-tab">
+          <h3>Description</h3>
+          <p id="car-description"><em>Loading description...</em></p>
+
+          <h3>Available Locations</h3>
+          <div id="locations" class="location-tags"></div>
+        </div>
+
+        <div class="tab-content hidden" id="features-tab">
+          <ul id="car-features"></ul>
+        </div>
+
+        <div class="tab-content hidden" id="specs-tab">
+          <ul id="car-specifications"></ul>
+        </div>
+      </div>
+
+     
+        <div class="booking-box">
+          <div id="login-message" class="login-required hidden">
+            <p>Please login to book this car</p>
+            <a href="../html/login.html" class="login-btn">Login Now</a>
+          </div>
+          <div id="booking-form" class="hidden">
+            <h3>Book This Vehicle</h3>
+            <label for="pickup-date">Pickup Date</label>
+            <input type="date" id="pickup-date" />
+
+            <label for="return-date">Return Date</label>
+            <input type="date" id="return-date" />
+
+            <div class="rate-info">
+              <p>Daily Rate: ₹<span id="price">0</span>/day</p>
+              <p>Rental Duration: <span id="rental-days">0</span> days</p>
+            </div>
+
+            <h3>Total: ₹<span id="total-price">0</span></h3>
+            <button class="book-btn">Book Now</button>
+            <small>Free cancellation up to 24 hours before pickup</small>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Check login status first
+      fetch('../php/check_login.php')
+        .then(res => res.json())
+        .then(data => {
+          const loginMessage = document.getElementById('login-message');
+          const bookingForm = document.getElementById('booking-form');
+          
+          if (data.logged_in) {
+            loginMessage.classList.add('hidden');
+            bookingForm.classList.remove('hidden');
+          } else {
+            loginMessage.classList.remove('hidden');
+            bookingForm.classList.add('hidden');
+          }
+        })
+        .catch(error => {
+          console.error('Error checking login status:', error);
+        });
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const carId = urlParams.get('id');
+
+      if (!carId) {
+        alert("Car ID not provided");
+        return;
+      }
+
+      fetch(`../php/get_car_details.php?id=${carId}&t=${Date.now()}`)
+
+        .then(res => res.json())
+        .then(data => {
+          if (!data.success) {
+            alert(data.message || "Car not found");
+            return;
+          }
+
+          const car = data.car;
+
+          // Update car info
+          document.getElementById("car-name").textContent = car.name;
+          document.getElementById("car-rating").textContent = car.rating || "Not Rated";
+          document.getElementById("car-category").textContent = car.category || "Category Not Available";
+          document.getElementById("car-description").textContent = car.description || "No description available.";
+
+          const carImg = document.getElementById("main-car-image");
+          carImg.src = `../img/cars/${car.image}`;
+          carImg.alt = `${car.name} image`;
+          carImg.onerror = () => {
+            carImg.src = "../img/placeholder-car.png";
+          };
+
+          const locationContainer = document.getElementById("locations");
+          locationContainer.innerHTML = "";
+          (car.locations || []).forEach(loc => {
+            const tag = document.createElement("div");
+            tag.className = "tag";
+            tag.textContent = loc;
+            locationContainer.appendChild(tag);
+          });
+
+          const featuresList = document.getElementById("car-features");
+          featuresList.innerHTML = "";
+          (car.features || []).forEach(feature => {
+            const li = document.createElement("li");
+            li.textContent = feature;
+            featuresList.appendChild(li);
+          });
+
+          const specsList = document.getElementById("car-specifications");
+          specsList.innerHTML = "";
+          (car.specifications || []).forEach(spec => {
+            const li = document.createElement("li");
+            li.textContent = spec;
+            specsList.appendChild(li);
+          });
+
+          const price = car.price || 0;
+          document.getElementById("price").textContent = price;
+
+          // Handle date input and price calc
+          const pickupInput = document.getElementById("pickup-date");
+          const returnInput = document.getElementById("return-date");
+          const rentalDaysEl = document.getElementById("rental-days");
+          const totalPriceEl = document.getElementById("total-price");
+
+          const today = new Date().toISOString().split("T")[0];
+          pickupInput.min = returnInput.min = today;
+
+          function calculateTotal() {
+            const pickupDate = new Date(pickupInput.value);
+            const returnDate = new Date(returnInput.value);
+
+            if (pickupInput.value && returnInput.value && returnDate > pickupDate) {
+              const days = Math.ceil((returnDate - pickupDate) / (1000 * 60 * 60 * 24));
+              rentalDaysEl.textContent = days;
+              totalPriceEl.textContent = days * price;
+            } else {
+              rentalDaysEl.textContent = "0";
+              totalPriceEl.textContent = "0";
+            }
+          }
+
+          pickupInput.addEventListener("change", calculateTotal);
+          returnInput.addEventListener("change", calculateTotal);
+
+          // Tabs
+          const tabButtons = document.querySelectorAll(".tab-btn");
+          const tabContents = document.querySelectorAll(".tab-content");
+
+          tabButtons.forEach(button => {
+            button.addEventListener("click", () => {
+              tabButtons.forEach(btn => btn.classList.remove("active"));
+              button.classList.add("active");
+              tabContents.forEach(tab => tab.classList.add("hidden"));
+              document.getElementById(`${button.dataset.tab}-tab`).classList.remove("hidden");
+            });
+          });
+
+          // Booking Logic
+          const bookButton = document.querySelector(".book-btn");
+
+          bookButton.addEventListener("click", () => {
+            // First check if user is logged in
+            fetch('../php/check_login.php')
+              .then(res => res.json())
+              .then(data => {
+                if (!data.logged_in) {
+                  window.location.href = '../html/login.html?redirect=' + encodeURIComponent(window.location.href);
+                  return;
+                }
+                
+                const pickupDate = pickupInput.value;
+                const returnDate = returnInput.value;
+
+                if (!pickupDate || !returnDate) {
+                  alert("Please select both pickup and return dates.");
+                  return;
+                }
+
+                const pickupDateObj = new Date(pickupDate);
+                const returnDateObj = new Date(returnDate);
+
+                if (returnDateObj <= pickupDateObj) {
+                  alert("Return date must be after pickup date.");
+                  return;
+                }
+
+                const rentalDays = Math.ceil((returnDateObj - pickupDateObj) / (1000 * 60 * 60 * 24));
+                const totalAmount = rentalDays * price;
+
+                // Proceed to booking confirmation page
+                window.location.href = `booking_confirmation.html?car_id=${carId}&pickup_date=${pickupDate}&return_date=${returnDate}&total=${totalAmount}`;
+              })
+              .catch(error => {
+                console.error("Error checking login status:", error);
+                alert("Something went wrong. Please try again.");
+              });
+          });
+
+        })
+        .catch(error => {
+          console.error("Error fetching car details:", error);
+          alert("Error fetching car details");
+        });
+    });
+
+  </script>
+</body>
+</html>

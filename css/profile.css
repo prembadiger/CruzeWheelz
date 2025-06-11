@@ -1,0 +1,78 @@
+/* Body styling */
+body {
+  background-color: #f3f4f6;
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Close button styling */
+.close-btn {
+  position: absolute;
+  right: 80px;
+  top: 60px;
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+/* Profile container styling */
+.profile-container {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  width: 650px;
+  padding: 30px;
+  text-align: center;
+}
+
+/* Profile title styling */
+h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Form input styling */
+form input {
+  width: 600px;
+  padding: 12px 15px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* Save button styling */
+.save-btn {
+  width: 50%;
+  padding: 12px;
+  background: #302f2f;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.3s ease;
+}
+
+.save-btn:hover {
+  background: #222;
+}
+
+/* Success message styling */
+.success-msg {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  color: #333;
+  border-radius: 5px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0s linear 0.5s;
+}
+

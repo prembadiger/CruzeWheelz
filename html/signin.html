@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - cruzewheelz</title>
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="left-section">
+            <img src="../img/bg/bg-3.png" alt="Car Image">
+        </div>
+        <div class="right-section">
+            <div class="login-box">
+                <h2>Login your Account</h2>
+                <p>Since this is your first trip, you'll need to provide us with some information before you can check out.</p>
+                <form action="../php/login.php" method="POST">
+                    <input type="email" name="email" placeholder="Email Id" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                </form>
+                <div class="extra-links">
+                    <a href="#">Login with phone instead</a>
+                    <a href="#">Forgot password?</a>
+                </div>
+                <p>New member? <a href="../html/signup.html">Sign Up</a></p>
+            </div>
+        </div>
+    </div>
+    <script src="../js/main.js"></script>
+</body>
+</html>

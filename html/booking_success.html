@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmed - CruzeWheelz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #0e0e0e;
+            color: #fff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #0e0e0e;
+            padding: 20px 40px;
+            border-bottom: 1px solid #1c1c1c;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            color: #ffcd00;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            color: #ffcd00;
+        }
+
+        .success-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .success-card {
+            background-color: #121212;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        .booking-info {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: rgba(30, 30, 30, 0.5);
+            border-radius: 8px;
+        }
+        
+        .booking-info h2 {
+            color: #ffcd00;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background-color: #28a745; /* Green background */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .success-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(0);
+            border-radius: 50%;
+            animation: success-ripple 1s ease-out forwards;
+        }
+        
+        @keyframes success-ripple {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+        
+        .success-icon i {
+            color: white;
+            font-size: 40px;
+            animation: success-check 0.5s ease-in-out 0.2s both;
+        }
+        
+        @keyframes success-check {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .success-title {
+            font-size: 2.2rem;
+            color: #ffcd00;
+            margin-bottom: 15px;
+        }
+
+        .success-message {
+            color: #aaa;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        .booking-info {
+            background: #000;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            text-align: left;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .info-label {
+            color: #aaa;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-value {
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: #ffcd00;
+            color: #000;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #ffcd00;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary:hover {
+            background: #ffd700;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 205, 0, 0.1);
+        }
+        
+        /* Animation styles */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Timeline styles */
+        .timeline {
+            margin-top: 40px;
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            width: 4px;
+            background-color: #ffcd00;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: #ffcd00;
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .timeline-left {
+            left: 0;
+        }
+        
+        .timeline-right {
+            left: 50%;
+        }
+        
+        .timeline-right::after {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            padding: 15px;
+            background-color: #1c1c1c;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* QR Code styles */
+        .qr-container {
+            margin: 30px auto;
+            max-width: 200px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        /* Tabs styles */
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background: transparent;
+            color: #aaa;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            color: #ffcd00;
+            border-bottom: 3px solid #ffcd00;
+        }
+        
+        .tab-content {
+            /* Will be controlled by JavaScript */
+            animation: fadeIn 0.5s ease;
+        }
+        
+        /* Weather widget */
+        .weather-widget {
+            background: #1c1c1c;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .weather-icon {
+            font-size: 2rem;
+            color: #ffcd00;
+        }
+        
+        .weather-info {
+            text-align: left;
+        }
+        
+        /* Rating system */
+        .rating-container {
+            margin: 20px 0;
+        }
+        
+        .rating {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .rating i {
+            font-size: 1.5rem;
+            color: #555;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .rating i:hover,
+        .rating i.active {
+            color: #ffcd00;
+        }
+        
+        /* Feedback section styles */
+        .rating {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .rating i {
+            font-size: 24px;
+            color: #ccc;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+        .rating i.active {
+            color: #ffc107;
+        }
+        .rating-text {
+            text-align: center;
+            margin: 10px 0;
+            height: 20px;
+            font-style: italic;
+            color: #555;
+        }
+        
+        /* Thank you message styles */
+        .thank-you-message {
+            text-align: center;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+        .thank-you-message i {
+            font-size: 48px;
+            color: #28a745;
+            margin-bottom: 15px;
+        }
+        .thank-you-message h3 {
+            color: #28a745;
+            margin-bottom: 15px;
+        }
+        .thank-you-message p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 20px;
+            }
+
+            .success-container {
+                margin: 20px auto;
+            }
+
+            .success-card {
+                padding: 30px 20px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="../index.html" class="logo">CruzeWheelz</a>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="my_bookings.html">My Bookings</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="success-container">
+        <div class="success-card animate__animated animate__fadeIn">
+            <div class="success-icon animate__animated animate__bounceIn">
+                <i class="fas fa-check"></i>
+            </div>
+            <h1 class="success-title animate__animated animate__fadeInDown">Booking Confirmed!</h1>
+            <p class="success-message animate__animated animate__fadeIn animate__delay-1s">Your car rental booking has been successfully confirmed.</p>
+            
+            <!-- Booking Details Section - Always visible -->
+            <div class="booking-info fade-in">
+                <h2>Booking Details</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Booking ID</span>
+                        <span class="info-value" id="booking-id">Loading...</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Car Model</span>
+                        <span class="info-value" id="car-model">Loading...</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Pickup Location</span>
+                        <span class="info-value" id="pickup-location">Loading...</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Return Location</span>
+                        <span class="info-value" id="return-location">Loading...</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Pickup Date</span>
+                        <span class="info-value" id="pickup-date">Loading...</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Return Date</span>
+                        <span class="info-value" id="return-date">Loading...</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Total Amount</span>
+                        <span class="info-value" id="total-amount">Loading...</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Payment Status</span>
+                        <span class="info-value" id="payment-status">Loading...</span>
+                    </div>
+                </div>
+                
+                <!-- Weather Widget -->
+                <div class="weather-widget fade-in" id="weather-widget">
+                    <div class="weather-icon">
+                        <i class="fas fa-cloud-sun"></i>
+                    </div>
+                    <div class="weather-info">
+                        <h4>Weather at Pickup Location</h4>
+                        <p id="weather-temp">Loading weather data...</p>
+                    </div>
+                </div>
+            </div>
+            
+
+                
+                <!-- Tab Content Container -->
+                <div class="tab-content-container">
+                    <!-- Tab Content: Trip Timeline -->
+                    <div id="trip-timeline" class="tab-content" style="display: none;">
+                        <div class="timeline">
+                            <div class="timeline-line"></div>
+                            
+                            <div class="timeline-item timeline-left">
+                                <div class="timeline-content">
+                                    <h3>Booking Confirmed</h3>
+                                    <p>Your booking has been confirmed and is ready for pickup.</p>
+                                    <p id="booking-time">Just now</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item timeline-right">
+                                <div class="timeline-content">
+                                    <h3>Car Pickup</h3>
+                                    <p>Visit our center to pick up your car.</p>
+                                    <p id="pickup-time">Loading...</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item timeline-left">
+                                <div class="timeline-content">
+                                    <h3>Enjoy Your Trip</h3>
+                                    <p>Drive safely and enjoy your journey!</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item timeline-right">
+                                <div class="timeline-content">
+                                    <h3>Car Return</h3>
+                                    <p>Return the car to our center.</p>
+                                    <p id="return-time">Loading...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Trip Timeline is now the default tab -->
+                    
+                    <!-- Tab Content: Feedback -->
+                    <div id="feedback" class="tab-content" style="display: block;">
+                        <h3>Rate Your Booking Experience</h3>
+                        <p>How would you rate your experience with CruzeWheelz?</p>
+                        
+                        <div class="rating-container">
+                            <div class="rating">
+                                <i class="far fa-star" data-rating="1"></i>
+                                <i class="far fa-star" data-rating="2"></i>
+                                <i class="far fa-star" data-rating="3"></i>
+                                <i class="far fa-star" data-rating="4"></i>
+                                <i class="far fa-star" data-rating="5"></i>
+                            </div>
+                            <p id="rating-text">Select a rating</p>
+                        </div>
+                        
+                        <textarea placeholder="Share your feedback (optional)" rows="4" style="width: 100%; margin: 15px 0; padding: 10px; border-radius: 8px; background: #333; color: #fff; border: none;"></textarea>
+                        
+                        <button class="btn btn-primary" id="submit-feedback">Submit Feedback</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <a href="my_bookings.html" class="btn btn-primary animate__animated animate__fadeInUp animate__delay-1s">View My Bookings</a>
+                <a href="../index.html" class="btn btn-secondary animate__animated animate__fadeInUp animate__delay-1s">Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- QR code library removed as it's no longer needed -->
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get booking ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const bookingId = urlParams.get('id');
+
+            if (!bookingId) {
+                window.location.href = '../index.html';
+                return;
+            }
+            
+            // Star rating functionality
+            const stars = document.querySelectorAll('.rating i');
+            const ratingText = document.getElementById('rating-text');
+            let currentRating = 0;
+            
+            stars.forEach(star => {
+                star.addEventListener('click', () => {
+                    const rating = parseInt(star.getAttribute('data-rating'));
+                    currentRating = rating;
+                    
+                    // Update stars display
+                    stars.forEach(s => {
+                        const starRating = parseInt(s.getAttribute('data-rating'));
+                        if (starRating <= rating) {
+                            s.classList.remove('far');
+                            s.classList.add('fas');
+                            s.classList.add('active');
+                        } else {
+                            s.classList.remove('fas');
+                            s.classList.add('far');
+                            s.classList.remove('active');
+                        }
+                    });
+                    
+                    // Update rating text
+                    const ratingMessages = [
+                        '',
+                        'Poor - We\'ll do better next time',
+                        'Fair - Thanks for your feedback',
+                        'Good - We appreciate your business',
+                        'Very Good - Thank you for choosing us',
+                        'Excellent - We\'re thrilled you enjoyed it!'
+                    ];
+                    
+                    ratingText.textContent = ratingMessages[rating];
+                });
+            });
+            
+            // Submit feedback button
+            document.getElementById('submit-feedback').addEventListener('click', () => {
+                const feedback = document.querySelector('textarea').value;
+                
+                // Check if a rating was selected
+                if (!currentRating) {
+                    alert('Please select a rating before submitting.');
+                    return;
+                }
+                
+                // Replace the feedback form with a thank-you message
+                const feedbackSection = document.getElementById('feedback');
+                if (feedbackSection) {
+                    feedbackSection.innerHTML = `
+                        <div class="thank-you-message animate__animated animate__fadeIn">
+                            <i class="fas fa-check-circle"></i>
+                            <h3>Thank You for Your Feedback!</h3>
+                            <p>Your rating: ${currentRating} star${currentRating > 1 ? 's' : ''}</p>
+                            ${feedback ? `<p>Your comment: "${feedback}"</p>` : ''}
+                            <p>We appreciate your input and will use it to improve our services.</p>
+                        </div>
+                    `;
+                } else {
+                    alert('Thank you for your feedback! Your rating: ' + currentRating + '/5');
+                }
+                
+                // Here you would normally send this to a server endpoint
+                console.log('Rating:', currentRating, 'Feedback:', feedback);
+            });
+
+            // Fetch booking details
+            fetch(`../php/get_booking_details.php?id=${bookingId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success) {
+                        const booking = data.booking;
+                        
+                        // Helper function to safely update elements
+                        function updateElement(id, value) {
+                            const element = document.getElementById(id);
+                            if (element) {
+                                element.textContent = value;
+                            } else {
+                                console.log(`Element with id '${id}' not found`);
+                            }
+                        }
+                        
+                        // Update the UI with booking details
+                        updateElement('booking-id', booking.id);
+                        updateElement('car-model', booking.car_model);
+                        updateElement('pickup-location', booking.pickup_location);
+                        updateElement('return-location', booking.return_location);
+                        
+                        // Format dates
+                        const pickupDate = new Date(booking.pickup_date);
+                        const returnDate = new Date(booking.return_date);
+                        updateElement('pickup-date', pickupDate.toLocaleDateString());
+                        updateElement('return-date', returnDate.toLocaleDateString());
+                        
+                        // Update timeline dates if they exist
+                        if (document.getElementById('pickup-time')) {
+                            updateElement('pickup-time', pickupDate.toLocaleDateString() + ' at ' + 
+                                pickupDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
+                        }
+                        
+                        if (document.getElementById('return-time')) {
+                            updateElement('return-time', returnDate.toLocaleDateString() + ' at ' + 
+                                returnDate.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
+                        }
+                        
+                        updateElement('total-amount', `₹${booking.total_amount}`);
+                        updateElement('payment-status', booking.payment_status.charAt(0).toUpperCase() + booking.payment_status.slice(1));
+
+                        // QR code generation removed as digital ticket section is no longer needed
+                        
+                        // Simulate weather data
+                        setTimeout(() => {
+                            const weatherTemp = document.getElementById('weather-temp');
+                            if (weatherTemp) {
+                                weatherTemp.innerHTML = `<strong>28°C</strong> - Sunny with occasional clouds<br>Perfect driving conditions!`;
+                            }
+                        }, 1500);
+
+                        // After successful load, store the booking ID in session storage
+                        sessionStorage.setItem('lastBookingId', booking.id);
+                    } else {
+                        throw new Error(data.message || 'Failed to load booking details');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading booking details:', error);
+                    
+                    // Display error in booking info section
+                    const bookingInfoSection = document.querySelector('.booking-info');
+                    if (bookingInfoSection) {
+                        bookingInfoSection.innerHTML = `
+                            <div class="error-message animate__animated animate__fadeIn">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <h3>Unable to Load Booking Details</h3>
+                                <p>We're having trouble retrieving your booking information.</p>
+                                <p>Error: ${error.message || 'Connection failed'}</p>
+                                <p>Booking ID: ${bookingId || 'Not provided'}</p>
+                                <div class="error-actions">
+                                    <button class="btn btn-primary" onclick="window.location.reload()">Try Again</button>
+                                    <a href="my_bookings.html" class="btn btn-secondary">Go to My Bookings</a>
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        // Only redirect if we can't show the error in the UI
+                        alert('Failed to load booking details: ' + error.message);
+                        window.location.href = 'my_bookings.html';
+                    }
+                });
+                
+            // Download ticket functionality removed
+        });
+
+        // Prevent going back to confirmation page
+        history.pushState(null, null, document.URL);
+        window.addEventListener('popstate', function () {
+            history.pushState(null, null, document.URL);
+        });
+    </script>
+</body>
+</html> 
