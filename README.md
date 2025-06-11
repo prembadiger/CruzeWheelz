@@ -40,7 +40,6 @@ cruzewheelz/
 ├── admin/              # Administrative interface
 │   ├── php/           # Admin backend scripts
 │   ├── html/          # Admin frontend pages
-│   ├── admin.sql      # Admin database schema
 │   └── index.html     # Admin dashboard entry
 ├── php/               # Backend PHP scripts
 ├── js/                # JavaScript files
@@ -67,7 +66,6 @@ cruzewheelz/
    # Import database schemas
    mysql -u root -p < database.sql
    mysql -u root -p < cars.sql
-   mysql -u root -p < admin/admin.sql
 
    # Configure database connection
    # Edit php/config.php with your database credentials
